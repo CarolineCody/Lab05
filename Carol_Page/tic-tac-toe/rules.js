@@ -121,7 +121,35 @@ Remember to set the strated flag as false
 
 */
 function reset_play(){
-	location.reload();
+	started = false;
+	turn = 1;
+	document.getElementById('turn_info').innerHTML = "Game has not begin.";
+	var p1 = document.getElementById('player1_id');
+	var p2 = document.getElementById('player2_id');
+	p1.disabled = false;
+	p2.disabled = false;
+	p1.value = "";
+	p2.value = "";
+	document.getElementById("move_text_id").value = "";
+	document.getElementById('A1').innerHTML = table_ids[0];
+	board_state[0] = -1;
+	document.getElementById('A2').innerHTML = table_ids[1];
+	board_state[1] = -1;
+	document.getElementById('A3').innerHTML = table_ids[2];
+	board_state[2] = -1;
+	document.getElementById('B1').innerHTML = table_ids[3];
+	board_state[3] = -1;
+	document.getElementById('B2').innerHTML = table_ids[4];
+	board_state[4] = -1;
+	document.getElementById('B3').innerHTML = table_ids[5];
+	board_state[5] = -1;
+	document.getElementById('C1').innerHTML = table_ids[6];
+	board_state[6] = -1;
+	document.getElementById('C2').innerHTML = table_ids[7];
+	board_state[7] = -1;
+	document.getElementById('C3').innerHTML = table_ids[8];
+	board_state[8] = -1;
+	
 }
 
 /*
@@ -145,12 +173,10 @@ function play() {
 		alert("The game has not started");
 	}
 	else{
-		var huntress = false;
 		var mink = document.getElementById("move_text_id").value;
-		for(var c = 0 ; c < table_ids.length; c++){
-			if(mink === table_ids[c]){
-				huntress = true;
-				var fae = document.getElementById(table_ids[c]);
+		if(mink === 'A1' || mink === 'A2' || mink === 'A3' || mink === 'B1' || mink === 'B2' || mink === 'B3' || mink === 'C1' || mink === 'C2' || mink === 'C3'){
+			var fae = document.getElementById(mink);
+			if(fae.innerHTML === mink){
 				if(whose_move() == 1){
 					fae.innerHTML = "X";
 					document.getElementById('turn_info').innerHTML = "Turn for : <b>O</b>";
@@ -159,78 +185,81 @@ function play() {
 					fae.innerHTML = "O";
 					document.getElementById('turn_info').innerHTML = "Turn for : <b>X</b>";
 				}
-				table_ids[c] = whose_move();
+				board_state[table_ids.indexOf(mink)] = whose_move();
 				toggle_move();
-				if(table_ids[0] == table_ids[1] && table_ids[1] == table_ids[2] && table_ids[0] == 1){
+				if(board_state[0] == board_state[1] && board_state[1] == board_state[2] && board_state[0] == 1){
 					alert("Player 1 Wins!");
 					reset_play();
 				}
-				if(table_ids[3] == table_ids[4] && table_ids[4] == table_ids[5] && table_ids[3] == 1){
+				if(board_state[3] == board_state[4] && board_state[4] == board_state[5] && board_state[3] == 1){
 					alert("Player 1 Wins!");
 					reset_play();
 				}
-				if(table_ids[7] == table_ids[8] && table_ids[8] == table_ids[9] && table_ids[7] == 1){
+				if(board_state[7] == board_state[8] && board_state[8] == board_state[9] && board_state[7] == 1){
 					alert("Player 1 Wins!");
 					reset_play();
 				}
-				if(table_ids[0] == table_ids[3] && table_ids[3] == table_ids[6] && table_ids[0] == 1){
+				if(board_state[0] == board_state[3] && board_state[3] == board_state[6] && board_state[0] == 1){
 					alert("Player 1 Wins!");
 					reset_play();
 				}
-				if(table_ids[1] == table_ids[4] && table_ids[4] == table_ids[7] && table_ids[1] == 1){
+				if(board_state[1] == board_state[4] && board_state[4] == board_state[7] && board_state[1] == 1){
 					alert("Player 1 Wins!");
 					reset_play();
 				}
-				if(table_ids[2] == table_ids[5] && table_ids[5] == table_ids[8] && table_ids[2] == 1){
+				if(board_state[2] == board_state[5] && board_state[5] == board_state[8] && board_state[2] == 1){
 					alert("Player 1 Wins!");
 					reset_play();
 				}
-				if(table_ids[0] == table_ids[4] && table_ids[4] == table_ids[8] && table_ids[0] == 1){
+				if(board_state[0] == board_state[4] && board_state[4] == board_state[8] && board_state[0] == 1){
 					alert("Player 1 Wins!");
 					reset_play();
 				}
-				if(table_ids[2] == table_ids[4] && table_ids[4] == table_ids[6] && table_ids[2] == 1){
+				if(board_state[2] == board_state[4] && board_state[4] == board_state[6] && board_state[2] == 1){
 					alert("Player 1 Wins!");
 					reset_play();
 				}
-				if(table_ids[0] == table_ids[1] && table_ids[1] == table_ids[2] && table_ids[0] == 0){
+				if(board_state[0] == board_state[1] && board_state[1] == board_state[2] && board_state[0] == 0){
 					alert("Player 2 Wins!");
 					reset_play();
 				}
-				if(table_ids[3] == table_ids[4] && table_ids[4] == table_ids[5] && table_ids[3] == 0){
+				if(board_state[3] == board_state[4] && board_state[4] == board_state[5] && board_state[3] == 0){
 					alert("Player 2 Wins!");
 					reset_play();
 				}
-				if(table_ids[7] == table_ids[8] && table_ids[8] == table_ids[9] && table_ids[7] == 0){
+				if(board_state[7] == board_state[8] && board_state[8] == board_state[9] && board_state[7] == 0){
 					alert("Player 2 Wins!");
 					reset_play();
 				}
-				if(table_ids[0] == table_ids[3] && table_ids[3] == table_ids[6] && table_ids[0] == 0){
+				if(board_state[0] == board_state[3] && board_state[3] == board_state[6] && board_state[0] == 0){
 					alert("Player 2 Wins!");
 					reset_play();
 				}
-				if(table_ids[1] == table_ids[4] && table_ids[4] == table_ids[7] && table_ids[1] == 0){
+				if(board_state[1] == board_state[4] && board_state[4] == board_state[7] && board_state[1] == 0){
 					alert("Player 2 Wins!");
 					reset_play();
 				}
-				if(table_ids[2] == table_ids[5] && table_ids[5] == table_ids[8] && table_ids[2] == 0){
+				if(board_state[2] == board_state[5] && board_state[5] == board_state[8] && board_state[2] == 0){
 					alert("Player 2 Wins!");
 					reset_play();
 				}
-				if(table_ids[0] == table_ids[4] && table_ids[4] == table_ids[8] && table_ids[0] == 0){
+				if(board_state[0] == board_state[4] && board_state[4] == board_state[8] && board_state[0] == 0){
 					alert("Player 2 Wins!");
 					reset_play();
 				}
-				if(table_ids[2] == table_ids[4] && table_ids[4] == table_ids[6] && table_ids[2] == 0){
+				if(board_state[2] == board_state[4] && board_state[4] == board_state[6] && board_state[2] == 0){
 					alert("Player 2 Wins!");
 					reset_play();
 				}
 			}
+			else{
+				alert("Action has already been taken.");
+			}
 		}
-		if(!huntress){
+		else{
 			alert("Invalid Move!");
 		}
-		mink.innerHTML = "";
+		document.getElementById("move_text_id").value = "";
 	}
 }
 
