@@ -1,0 +1,34 @@
+.banner{
+	background-color: #696969 !important;
+	font-family: Garamond, serif;
+}
+
+.rounded{
+	border-radius: 50% !important;
+}
+
+.navi:hover{
+	background-color: #5b5b5b;
+}
+
+.goodFont{
+	font-family: Garamond, serif;
+}
+
+.rightShift{
+	float: right;
+}
+
+.imageBlock{
+	width:100%;
+	height:300px;
+}
+
+.smol{
+	width: 25px;
+	height: 25px;
+}
+
+img[src*="https://png.pngitem.com/pimgs/s/500-5007831_transparent-nursing-symbol-clipart-transparent-admin-logo-png.png"]{
+	border-radius: 50%;
+}
